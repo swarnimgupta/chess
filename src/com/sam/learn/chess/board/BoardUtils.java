@@ -7,6 +7,8 @@ public class BoardUtils {
     public static final boolean[] SECOND_COLUMN = initColumn(1);
     public static final boolean[] SEVENTH_COLUMN = initColumn(6);
     public static final boolean[] EIGHTH_COLUMN = initColumn(7);
+    public static final boolean[] SECOND_ROW = null;
+    public static final boolean[] SEVENTH_ROW = null;
 
     private BoardUtils() {
         throw new UnsupportedOperationException("You cannot perform this operation.");
