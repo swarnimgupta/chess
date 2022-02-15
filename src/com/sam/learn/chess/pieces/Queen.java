@@ -31,12 +31,13 @@ public class Queen extends Piece {
     public Collection<Move> calculateLegalMoves(final Board board) {
         final List<Move> legalMoves = new ArrayList<>();
         for (final int currentCandidateOffset : CANDIDATE_MOVES_COORDINATE) {
-            while (BoardUtils.isValidTileCoordinate(this.piecePosition)) {
-                if (isFirstColumnExclusion(this.piecePosition, currentCandidateOffset) ||
-                        isEightColumnExclusion(this.piecePosition, currentCandidateOffset)) {
+            int candidateDestinationCoordinate = this.piecePosition;
+            while (BoardUtils.isValidTileCoordinate(candidateDestinationCoordinate)) {
+                if (isFirstColumnExclusion(candidateDestinationCoordinate, currentCandidateOffset) ||
+                        isEightColumnExclusion(candidateDestinationCoordinate, currentCandidateOffset)) {
                     break;
                 }
-                final int candidateDestinationCoordinate = this.piecePosition + currentCandidateOffset;
+                candidateDestinationCoordinate += currentCandidateOffset;
                 if (BoardUtils.isValidTileCoordinate(candidateDestinationCoordinate)) {
                     final Tile candidateDestinationTile = board.getTile(candidateDestinationCoordinate);
                     if (!candidateDestinationTile.isTileOccupied()) {
