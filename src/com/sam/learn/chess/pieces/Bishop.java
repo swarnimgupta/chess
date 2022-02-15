@@ -57,4 +57,10 @@ public class Bishop extends Piece {
         }
         return Collections.unmodifiableList(legalMoves);
     }
+
+    @Override
+    public String toString() {
+        return PieceType.BISHOP.toString();
+    }
+
 }

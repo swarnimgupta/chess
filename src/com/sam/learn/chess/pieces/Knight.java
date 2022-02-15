@@ -68,4 +68,9 @@ public class Knight extends Piece {
         }
         return Collections.unmodifiableList(legalMoves);
     }
+
+    @Override
+    public String toString() {
+        return PieceType.KNIGHT.toString();
+    }
 }

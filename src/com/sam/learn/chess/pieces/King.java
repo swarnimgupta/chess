@@ -57,4 +57,9 @@ public class King extends Piece {
 
         return Collections.unmodifiableList(legalMoves);
     }
+
+    @Override
+    public String toString() {
+        return PieceType.KING.toString();
+    }
 }

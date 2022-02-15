@@ -1,5 +1,6 @@
 package com.sam.learn.chess.board;
 
+import com.sam.learn.chess.Alliance;
 import com.sam.learn.chess.pieces.Piece;
 
 import java.util.Collections;
@@ -46,6 +47,11 @@ public abstract class Tile {
         public Piece getPiece() {
             return null;
         }
+
+        @Override
+        public String toString() {
+            return "--";
+        }
     }
 
     public static final class OccupiedTile extends Tile {
@@ -65,6 +71,11 @@ public abstract class Tile {
         @Override
         public Piece getPiece() {
             return pieceOnTile;
+        }
+
+        @Override
+        public String toString() {
+            return Alliance.BLACK.equals(this.getPiece().getPieceAlliance()) ? "B" + pieceOnTile : "W" + pieceOnTile;
         }
     }
 }
