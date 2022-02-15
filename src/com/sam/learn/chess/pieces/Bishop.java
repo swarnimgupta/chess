@@ -19,7 +19,7 @@ public class Bishop extends Piece {
     private final static int[] CANDIDATE_MOVES_COORDINATE = {-9, -7, 7, 9};
 
     public Bishop(final int piecePosition, final Alliance pieceAlliance) {
-        super(piecePosition, pieceAlliance);
+        super(PieceType.BISHOP, piecePosition, pieceAlliance);
     }
 
     private static boolean isFirstColumnExclusion(final int currentPosition, final int candidateOffset) {

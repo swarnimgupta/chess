@@ -19,7 +19,7 @@ public class Rook extends Piece {
     private final static int[] CANDIDATE_MOVES_COORDINATE = {-8, -1, 1, 8};
 
     public Rook(final int piecePosition, final Alliance pieceAlliance) {
-        super(piecePosition, pieceAlliance);
+        super(PieceType.ROOK, piecePosition, pieceAlliance);
     }
 
     private static boolean isFirstColumnExclusion(final int currentPosition, final int candidateOffset) {

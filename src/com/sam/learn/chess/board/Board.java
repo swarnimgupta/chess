@@ -2,6 +2,9 @@ package com.sam.learn.chess.board;
 
 import com.sam.learn.chess.Alliance;
 import com.sam.learn.chess.pieces.*;
+import com.sam.learn.chess.player.BlackPlayer;
+import com.sam.learn.chess.player.Player;
+import com.sam.learn.chess.player.WhitePlayer;
 
 import java.util.*;
 
@@ -10,13 +13,17 @@ public class Board {
     private final List<Tile> gameBoard;
     private final Collection<Piece> whitePieces;
     private final Collection<Piece> blackPieces;
+    private final WhitePlayer whitePlayer;
+    private final BlackPlayer blackPlayer;
 
     public Board(BoardBuilder boardBuilder) {
         this.gameBoard = createGameBoard(boardBuilder);
         this.whitePieces = calculateActivePieces(this.gameBoard, Alliance.WHITE);
         this.blackPieces = calculateActivePieces(this.gameBoard, Alliance.BLACK);
-        final Collection<Move> whiteLegalMoves = calculateLegalMoves(this.whitePieces);
-        final Collection<Move> blackLegalMoves = calculateLegalMoves(this.blackPieces);
+        final Collection<Move> whiteStandardMoves = calculateLegalMoves(this.whitePieces);
+        final Collection<Move> blackStandardMoves = calculateLegalMoves(this.blackPieces);
+        this.whitePlayer = new WhitePlayer(this, whiteStandardMoves, blackStandardMoves);
+        this.blackPlayer = new BlackPlayer(this, blackStandardMoves, whiteStandardMoves);
     }
 
     private static List<Tile> createGameBoard(BoardBuilder boardBuilder) {
@@ -80,6 +87,14 @@ public class Board {
         return Collections.unmodifiableList(activePieces);
     }
 
+    public Collection<Piece> getWhitePieces() {
+        return this.whitePieces;
+    }
+
+    public Collection<Piece> getBlackPieces() {
+        return this.blackPieces;
+    }
+
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
@@ -103,6 +118,14 @@ public class Board {
 
     public Tile getTile(final int coordinate) {
         return gameBoard.get(coordinate);
+    }
+
+    public Player whitePlayer() {
+        return this.whitePlayer;
+    }
+
+    public Player blackPlayer() {
+        return this.blackPlayer;
     }
 
     public static class BoardBuilder {
